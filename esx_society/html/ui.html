@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/animate.css">
+	<link rel="stylesheet" href="./css/hover.css">
+	<link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="./progressbar.js"></script>
+</head>
+<body>
+	<!-- home -->
+	<div id="wrap" style="display:none;">
+		<div id="content">
+			<div id="company-name-big" class="company-name-big">Burger Shot</div>
+			<button onclick = "SelectAction('company-workers')" id="company-workers" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('hire-worker')" id="hire-worker" class="btn-action green-action"></button>
+			<button onclick = "SelectAction('single-reward')" id="single-prizes" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('mass-reward')" id="mass-prizes" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('set-meeting')" id="set-meeting" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('display-workers')" id="display-workers" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('company-logs')" id="company-logs" class="btn-action yellow-action"></button>
+			<button onclick = "SelectAction('company-privileges')" id="company-privileges" class="btn-action purple-action"></button>
+			
+			<div id="society-warehouse-content">
+				<table style="width:100%">
+				<tr>
+				<td>
+					<div id="society-warehouse-title">
+					SOCIETY WAREHOUSE
+					<span class="society-warehouse-status warehouse-unlocked"><i class="fad fa-unlock-alt"></i> UNLOCKED</span>
+					<!-- <span class="society-warehouse-status warehouse-locked"><i class="fad fa-lock-alt"></i> LOCKED</span> -->
+					</div>
+				</td>
+				<td>
+				<div id="society-money-title">
+					SOCIETY MONEY <span class="society-money-value">$1.653.100</span>
+				</div>
+				</td>
+				</tr>
+				</table>
+			</div>
+			
+			<!-- <div id="society-warehouse-title"> -->
+				<!-- SOCIETY WAREHOUSE -->
+				<!-- <span class="society-warehouse-status warehouse-unlocked"><i class="fad fa-unlock-alt"></i> UNLOCKED</span> -->
+				<!-- <span class="society-warehouse-status warehouse-locked"><i class="fad fa-lock-alt"></i> LOCKED</span> -->
+			<!-- </div> -->
+			<button onclick = "SelectAction('warehouse-open')" id="warehouse-open" class="btn-action-big green-action"></button>
+			<button onclick = "SelectAction('warehouse-close')" id="warehouse-close" class="btn-action-big red-action"></button>
+
+			<!-- <div id="society-money-title"> -->
+				<!-- SOCIETY MONEY <span class="society-money-value">$1.653.100</span> -->
+			<!-- </div> -->
+			<button onclick = "SelectAction('deposit')" id="deposit" class="btn-action-big green-action"></button>
+			<button onclick = "SelectAction('withdraw')" id="withdraw" class="btn-action-big red-action"></button>
+			<!-- <table id="police-abilities-button" style="display:none"> -->
+				<!-- <tr><td><button onclick = "SelectAction('abilities')" id="police-abilities" class="btn-action-big purple-action"></button></td></tr> -->
+			<!-- </table> -->
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>		
+			
+			<div id="company-level">
+				COMPANY LEVEL<br/>
+				<span>LEVEL 8</span>
+			</div>
+			
+			<div id="company-rank-pts">
+				RANK POINTS<br/>
+				<span>813790</span><br/>
+				<button id="btn-rank-up"><i class="fas fa-angle-double-up"></i> RANK UP</button>
+			</div>
+			
+			<button onclick = "SelectAction('abilities')" id="police-abilities" class="btn-action-big purple-action"></button>
+			
+			<div id="side-divider"></div> 	
+			<div id="company-taxes">
+				YOUR TAXES<br/>
+				<span>$23.000</span>
+				<button id="btn-pay-taxes"><i class="fas fa-hand-holding-usd"></i> PAY TAXES</button>
+			</div>
+			
+			<!-- <div id="side-divider"></div> 	 -->
+			
+			<div id="boss-name">
+				OWNER<br/><span>Strain</span><br/>
+				<button id="btn-change-boss"><i class="fad fa-share-all"></i> GIVE OWNERSHIP</button>
+			</div>
+			<div id="side-divider"></div> 
+			
+			<div id="viceboss-name">VICE BOSS<br/><span>Kappaccino</span></div>
+			<button id="btn-change-viceboss"><i class="fad fa-share-all"></i> CHANGE VICEBOSS</button>
+			<button id="btn-expel-viceboss"><i class="fad fa-sign-out"></i> EXPEL VICEBOSS</button>
+			
+			
+		</div>
+    </div>
+	
+	<!-- ABILITIES -->
+	<div id="wrap-abilities" style="display:none;">
+		<div id="statistics">
+			<div id="character-statistics" style="animation:fadeIn 2s 1">
+				<div id="statistics-scrollable">
+					<table id="statistics-list">
+						<tr>
+							<td class="icon-green"><i class="far fa-running"></i></td>
+							<td class="text">
+								<span id="title">Increase Run Speed</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Increase your mafia member's run speed. <br/>  10% = +1% more speed.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-green" style="width:10%"></div></div></td>
+							<td class="green">10%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-green"><i class="far fa-bullseye-arrow"></i></td>
+							<td class="text">
+								<span id="title">Reduce Recoil</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Decrease recoil in all guns. <br/> 10% = -1% less recoil.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-green" style="width:20%"></div></div></td>
+							<td class="green">30%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-blue"><i class="fas fa-flask-potion"></i></td>
+							<td class="text">
+								<span id="title">Health Regeneration</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Health regeneration every 30 seconds.<br/> 10% = +1% more regeneration.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-blue" style="width:90%"></div></div></td>
+							<td class="green">90%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-blue"><i class="far fa-vest"></i></td>
+							<td class="text">
+								<span id="title">Vest Regeneration</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Vest regeneration every 30 seconds. <br/> 10% = +1% more regeneration.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-blue" style="width:70%"></div></div></td>
+							<td class="green">70%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-red"><i class="far fa-shield-alt"></i></td>
+							<td class="text">
+								<span id="title">Reduce Damage Taken</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Reduce damage taken from enemies. <br/> 10% = -1% damage taken.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-red" style="width:20%"></div></div></td>
+							<td class="green">20%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-green"><i class="fas fa-fire-smoke"></i></td>
+							<td class="text">
+								<span id="title">Increased Damage</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Increase damage making to enemies. <br/> 10% = +1% more damage.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-green" style="width:50%"></div></div></td>
+							<td class="green">50%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-red"><i class="far fa-cannabis"></i></td>
+							<td class="text">
+								<span id="title">Better Sale on Weed</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Full Description εδώ</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-red" style="width:10%"></div></div></td>
+							<td class="green">10%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-red"><i class="far fa-tree-palm"></i></td>
+							<td class="text">
+								<span id="title">Better Sale on Cocaine</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Full Description εδώ</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-red" style="width:0%"></div></div></td>
+							<td class="green">0%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-red"><i class="far fa-capsules"></i></td>
+							<td class="text">
+								<span id="title">Better Sale on Meth</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Full Description εδώ</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-red" style="width:10%"></div></div></td>
+							<td class="green">10%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-green"><i class="far fa-sack-dollar"></i></td>
+							<td class="text">
+								<span id="title">Extra Black Money</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">Black money for all members every 1 hour. <br/> 10% = +100 Extra Black Money</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-green" style="width:70%"></div></div></td>
+							<td class="green">70%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+						<tr>
+							<td class="icon-green"><i class="far fa-warehouse"></i></td>
+							<td class="text">
+								<span id="title">Increase Armory</span>
+								<span id="skill-description"><i class="far fa-question-square"></i><span class="tooltiptext">You can now have a bigger armory with up to +100% more space.</span></span>
+							</td>
+							<td class="pbar"><div class="w3-border"><div class="w3-green" style="width:10%"></div></div></td>
+							<td class="green">10%</td>
+							<td class="button"><button id="upgrade-ability">UPGRADE</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>		
+			<div id="police-level">
+				<center><div id="levelbar"></div></center>
+				<script>
+				var bar = new ProgressBar.Circle(levelbar, {
+				  strokeWidth: 6,
+				  color: 'rgba(255,255,255,0.1)',
+				  trailColor: 'rgba(255,255,255,0.2)',
+				  trailWidth: 1,
+				  easing: 'easeInOut',
+				  duration: 2000,
+				  svgStyle: null,
+				  text: {
+					value: '',
+					alignToBottom: false
+				  },
+				  
+				  // Set default step function for all animate calls
+				  step: (state, bar) => {
+					bar.path.setAttribute('stroke', state.color);
+					var value = Math.round(bar.value() * 100);
+					bar.setText("<span id='level-circle'>3</span><br/><span id='level-circle-desc'>LEVEL</span>");
+					bar.text.style.color = state.color;
+				  }
+				});
+				
+				bar.animate(87 / 100); 
+				</script>
+				<br/>
+				POLICE LEVEL<br/>
+				<span id="perk-rank">LEVEL 3</span><br/>
+				UPGRADE POINTS: <span id="rank-coins">7</span><br/>
+				
+				<br/>
+				<button id="increase-rank"><i class="fas fa-arrow-up"></i> INCREASE RANK</button>
+				<button id="reset-abilities"><i class="fas fa-redo"></i> RESET ABILITIES</button>
+			</div>
+			<button onclick = "SelectAction('back')" class="back-btn"><i class="fad fa-chevron-double-left"></i> GO BACK</button>
+		</div>
+    </div>
+	
+		<!-- PRIVILEGES -->
+	<div id="wrap-privileges" style="display:none;">
+		<div id="strain-content">
+			<div id="strain-scrollable3">
+				<table style="width:100%" id="manage-privileges">
+					<tr>
+						<td class="strain-row" style="width:17%;"><span id="privilege-name">Boss</span></td>
+						<td class="strain-row" style="width:55%;">
+							<div class="privilege-item">
+								<input id="invite" type="checkbox" class="css-checkbox" checked="checked"/>
+								<label for="invite" class="css-label">Invite Members</label>
+							</div>
+							<div class="privilege-item">
+								<input id="dismiss" type="checkbox" class="css-checkbox" checked="checked"/>
+								<label for="dismiss" class="css-label">Kick Members</label>
+							</div>
+							<div class="privilege-item">
+								<input id="declare-war" type="checkbox" class="css-checkbox" checked="checked"/>
+								<label for="declare-war" class="css-label">Declare War</label>
+							</div>
+							<div class="privilege-item">
+								<input id="create-alliance" type="checkbox" class="css-checkbox" checked="checked"/>
+								<label for="create-alliance" class="css-label">Create Alliance</label>
+							</div>
+							<div class="privilege-item">
+								<input id="dissolve-alliance" type="checkbox" class="css-checkbox" checked="checked"/>
+								<label for="dissolve-alliance" class="css-label">Dissolve Alliance</label>
+							</div>
+						</td>
+						<td class="strain-row" style="width:25%;text-align:center;">
+							<button id="btn-save"><i class="fal fa-save"></i> Save</button><br/>
+							<button id="btn-reset"><i class="far fa-redo-alt"></i> Reset</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>			
+			<button onclick = "SelectAction('back')" class="back-btn"><i class="fad fa-chevron-double-left"></i> GO BACK</button>
+		</div>
+    </div>
+	
+	<!-- settings -->
+	<div id="wrap-settings" style="display:none;">
+		<div id="strain-content">
+			<table style="width:100%" id="change-view">
+				<tr>
+					<td>
+						<form action="">
+						  <input type="search" id="search" name="search" placeholder="Search.." required>
+						  <button type="submit" id="btn-search"><i class="fas fa-search"></i></button>
+						</form>
+					</td>
+					<td><button onclick = "ChangeView('online')" id="btn-online">Online</button></td>
+					<td><button onclick = "ChangeView('offline')" id="btn-offline">Offline</button></td>
+					<td><button onclick = "ChangeView('everybody')" id="btn-everybody">Everybody</button></td>
+					<td style="padding-left:0.2vw;vertical-align:middle;font-size:0.7vw;">TOTAL MEMBERS<br/> <span id="total-members">131 People</span></td>
+				</tr>
+			</table>
+			<br/>
+			
+			<div id="strain-scrollable">
+				<table style="width:100%" id="manage-employees">
+					<tr>
+						<td class="strain-row" style="width:3%"><div id="member-status-off"></div></td>
+						<td class="strain-row" style="width:10%"><span id="member-id">10580</span></td>
+						<td class="strain-row" style="width:25%"><span id="member-name">Strain</span></td>
+						<td class="strain-row" style="width:20%">
+							<span id="member-rank">
+								Vice President
+								<div id="edit-rank-wrap">
+									<button id="boss" class="change-rank">Boss</button>
+									<button id="underboss" class="change-rank">Underboss</button>
+									<button id="gunman" class="change-rank">Gunman</button>
+									<button id="recruit" class="change-rank">Recruit</button>
+									<button id="boss" class="change-rank">Boss</button>
+									<button id="underboss" class="change-rank">Underboss</button>
+									<button id="gunman" class="change-rank">Gunman</button>
+									<button id="recruit" class="change-rank">Recruit</button>								
+								</div>
+							</span>
+						</td>
+						<td class="strain-row">
+							<div id="member-online">ONLINE YESTERDAY: <span id="today-online">10 Hours 11 Minutes</span></div>
+							<div id="member-online">WEEKLY ONLINE: <span id="weekly-online">49 Hours 34 Minutes</span></div>
+							<div id="member-online">LAST ONLINE: <span id="last-online">09.10.2021 21:44</span></div>
+						</td>
+						<td class="strain-row" style="width:12%">
+							<button id="btn-kick"><i class="fal fa-sign-out-alt"></i> Dismiss</button><br/>
+							<button id="btn-edit-rank"><i class="fal fa-user-edit"></i> Edit Rank</button>
+						</td>
+					</tr>
+					<tr>
+						<td class="strain-row" style="width:3%"><div id="member-status-off"></div></td>
+						<td class="strain-row" style="width:10%"><span id="member-id">10580</span></td>
+						<td class="strain-row" style="width:25%"><span id="member-name">Strain</span></td>
+						<td class="strain-row" style="width:20%">
+							<span id="member-rank">
+								Vice President
+							</span>
+						</td>
+						<td class="strain-row">
+							<div id="member-online">ONLINE TODAY: <span id="today-online">`+ dayOnlineHtml +`</span></div>
+							<div id="member-online">TOTAL TIME ONLINE: <span id="weekly-online">`+ totalOnlineHtml +`</span></div>
+							<div id="member-online">LAST ONLINE: <span id="last-online">`+ lastConnectHtml +`</span></div>
+						</td>
+						<td class="strain-row"><button onclick = "GiveReward(\'`+ employees[i].identifier +`\')" id="btn-reward"><i class="fas fa-gift"></i> Reward</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>			
+			<button onclick = "SelectAction('back')" class="back-btn"><i class="fad fa-chevron-double-left"></i> GO BACK</button>
+		</div>
+    </div>
+	
+	<!-- invite -->
+	<div id="wrap-invite" style="display:none;">
+		<div id="strain-content">
+			<div id="strain-scrollable2">
+				<table style="width:100%;margin-top:0.5vw;" id="manage-employees2">
+					<tr>
+						<td class="strain-row" style="width:3%"><div id="member-status-on"></div></td>
+						<td class="strain-row" style="width:10%"><span id="member-id">10580</span></td>
+						<td class="strain-row" style="width:8%;text-align:center;"><img id="member-profile" src="https://i.imgur.com/djMA51Q.png"/></td>
+						<td class="strain-row" style="width:25%"><span id="member-name">Strain</span></td>
+						<td class="strain-row" style="width:10%;font-size:0.8vw;">BATTLEPASS LEVEL</td>
+						<td class="strain-row" style="width:7%"><div id="member-pass-level">81<br/><span>LEVEL</span></div></td>
+						<td class="strain-row" style="width:10%"><button id="btn-invite"><i class="fas fa-user-plus"></i> Invite</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>			
+			<button onclick = "SelectAction('back')" class="back-btn"><i class="fad fa-chevron-double-left"></i> GO BACK</button>
+		</div>
+    </div>
+	
+	<!-- invite -->
+	<div id="wrap-myjobs" style="display:none;">
+		<div id="strain-content">
+			<div id="strain-scrollable2">
+				<table style="width:100%" id="manage-jobs">
+					<tr>
+						<td class="strain-row" style="width:8%;"><div id="job-icon"><center><i class="fal fa-cheeseburger"></i></center></div></td>
+						<td class="strain-row" style="width:20%;"><div id="job-name">McDonalds</div></td>
+						<td class="strain-row" style="width:30%;"><div id="current-job"><i class="fas fa-badge-check"></i> Current Job</div></td>
+						<!-- <td class="strain-row" style="width:30%;"><div id="job-money">Society Money: <span>$1.346.900</span></div></td> -->
+						<!-- <td class="strain-row" style="width:15%;"><button id="btn-gps"><i class="fas fa-map-marker-alt"></i> GPS Location</button></td> -->
+						<td class="strain-row" style="width:15%;"><button id="btn-change-job"><i class="fas fa-random"></i> Change Job</button></td>
+					</tr>
+					<tr>
+						<td class="strain-row" style="width:8%;"><div id="job-icon"><center><i class="fal fa-cheeseburger"></i></center></div></td>
+						<td class="strain-row" style="width:20%;"><div id="job-name">McDonalds</div></td>
+						<td class="strain-row" style="width:30%;"><div id="previous-job"><i class="fal fa-history"></i> Previous Job</div></td>
+						<!-- <td class="strain-row" style="width:30%;"><div id="job-money">Society Money: <span>$1.346.900</span></div></td> -->
+						<!-- <td class="strain-row" style="width:15%;"><button id="btn-gps"><i class="fas fa-map-marker-alt"></i> GPS Location</button></td> -->
+						<td class="strain-row" style="width:15%;"><button id="btn-change-job"><i class="fas fa-random"></i> Change Job</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>			
+		</div>
+    </div>
+	
+	<!-- settings -->
+	<div id="wrap-logs" style="display:none;">
+		<div id="strain-content">
+			<table style="width:100%" id="change-logs-view">
+				<tr>
+					<td>
+						<form action="">
+						  <input type="search" id="search-log" name="search" placeholder="Search.." required>
+						  <button type="submit" id="btn-search-log"><i class="fas fa-search"></i></button>
+						</form>
+					</td>
+					<td><button onclick = "ChangeView('online')" id="btn-online">Online</button></td>
+					<td><button onclick = "ChangeView('offline')" id="btn-offline">Offline</button></td>
+					<td><button onclick = "ChangeView('everybody')" id="btn-everybody">Everybody</button></td>
+					<td style="padding-left:0.2vw;vertical-align:middle;font-size:0.7vw;">TOTAL MEMBERS<br/> <span id="total-members">131 People</span></td>
+				</tr>
+			</table>
+			<br/>
+			
+			<div id="strain-scrollable">
+				<table style="width:100%" id="display-logs">
+					<tr>
+						<td class="strain-row" style="width:3%"><div id="member-status-on"></div></td>
+						<td class="strain-row" style="width:10%"><span id="member-id">10580</span></td>
+						<td class="strain-row" style="width:25%"><span id="member-name">Strain</span></td>
+						<td class="strain-row" style="width:33%"><div id="member-withdraw">WITHDREW: <span>M416</span> ON <span>17.11.2021 21:33</span></div></td>
+					</tr>
+					<tr>
+						<td class="strain-row"><div id="member-status-on"></div></td>
+						<td class="strain-row"><span id="member-id">10580</span></td>
+						<td class="strain-row"><span id="member-name">Strain</span></td>
+						<td class="strain-row"><div id="member-deposit">DEPOSITED: <span>15 COCA LEAF</span> ON <span>22.11.2021 18:07</span></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="side-menu">
+			<div id="side-border"></div>
+			<img class="side-img" src="./images/side-img.png"/>			
+			<button onclick = "SelectAction('back')" class="back-btn"><i class="fad fa-chevron-double-left"></i> GO BACK</button>
+		</div>
+    </div>
+
+    <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
+</body>
+</html>
